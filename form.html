@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form</title>
+    <link rel="stylesheet" href="theme-chalk/index.css">
+    <link rel="stylesheet" href="css/header-menu.css">
+    <link rel="stylesheet" href="css/table-new.css">
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/vue-ico.js"></script>
+</head>
+
+<body>
+    <div id="form">
+        <!-- form表单 -->
+        <div class="g-form">
+            <div class="clear"></div>
+            <transition name="fade">
+                <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                    <el-row class="form_box">
+                        <el-col :span="7">
+                            <el-form-item label="审批人">
+                                <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+                            </el-form-item>
+
+                        </el-col>
+                        <el-col :span="4" class="form_radio">
+                            <el-radio v-model="radio" label="1">备选项</el-radio>
+                            <el-radio v-model="radio" label="2">备选项</el-radio>
+                        </el-col>
+                        <el-col :span="6" class="form_radio">
+                            <el-checkbox-group v-model="checkList">
+                                <el-checkbox label="复选框 A"></el-checkbox>
+                                <el-checkbox label="禁用" disabled></el-checkbox>
+                            </el-checkbox-group>
+                        </el-col>
+                        <el-col :span="4" class="form_radio">
+                            <el-switch v-model="formOpen" active-color="#3bbcb2" inactive-color="#ccc" active-text="高级查询" inactive-text="快速查询">
+                            </el-switch>
+                        </el-col>
+                    </el-row>
+                    <el-row class="form_box" v-show="formOpen">
+                        <el-row>
+                            <el-col :span="14">
+                                <el-form-item label="活动时间">
+                                    <el-col :span="11">
+                                        <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                                    </el-col>
+                                    <el-col class="line" :span="2">-</el-col>
+                                    <el-col :span="11">
+                                        <el-time-picker type="fixed-time" placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+                                    </el-col>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="4" class="form_radio">
+                                <el-rate v-model="value3" show-text>
+                                </el-rate>
+                            </el-col>
+                            <el-col :span="4">
+                                <el-button class="btn_edit" type="primary">立即创建</el-button>
+                            </el-col>
+                            <el-col :span="7">
+                                <el-form-item label="活动区域">
+                                    <el-select v-model="formInline.region" placeholder="活动区域">
+                                        <el-option label="区域一" value="shanghai"></el-option>
+                                        <el-option label="区域二" value="beijing"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-row>
+                </el-form>
+            </transition>
+        </div>
+        <!-- form表单  ---/end------>
+        <!-- table -->
+        <div class="g-atl">
+            <div class="g-table" id="f_table">
+                <el-table :data="tableData" border style="width: 100%">
+                    <el-table-column class="ww" prop="date" label="日期" width="180">
+                    </el-table-column>
+                    <el-table-column prop="name" label="姓名" width="180">
+                    </el-table-column>
+                    <el-table-column prop="address" label="地址">
+                    </el-table-column>
+                </el-table>
+                <!-- table ---end-->
+                <div class="f_block">
+                    <el-pagination :current-page="currentPage" :page-sizes="[10, 20, 50, 100]" :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="1400">
+                    </el-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/hover.js"></script>
+<script>
+    new Vue({
+        el: '#form',
+        data() {
+            return {
+                radio: '1',
+                value1: true,
+                value2: true,
+                value3: null,
+                formOpen: true,
+                btnName: '关闭',
+                checkList: ['选中且禁用', '复选框 A'],
+                formInline: {
+                    user: '',
+                    region: ''
+                },
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                },
+                tableData: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }],
+                currentPage: 4
+            }
+        },
+        methods: {
+            onSubmit() {
+                console.log('submit!');
+            },
+            form_open: function() {
+                this.formOpen = !this.formOpen;
+                if (this.formOpen) {
+                    this.btnName = '关闭';
+                } else {
+                    this.btnName = '展开';
+                }
+
+            }
+        }
+    });
+</script>
+
+</html>

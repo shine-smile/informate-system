@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>page</title>
+    <link rel="stylesheet" href="theme-chalk/index.css">
+    <link rel="stylesheet" href="css/header-menu.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/table-new.css">
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/vue-ico.js"></script>
+</head>
+
+<body>
+    <div id="f_table">
+        <div class="g-atl">
+            <ul>
+                <li class="submenu">
+                    <img src="images/bottom_8.png" width="158" height="155" id="Image8" onmouseover="MM_swapImage('Image8','','images/bottom_8_1.png',1)" onmouseout="MM_swapImgRestore()" />
+                </li>
+                <li class="submenu">
+                    <img src="images/bottom_9.png" width="158" height="155" id="Image9" onmouseover="MM_swapImage('Image9','','images/bottom_9_1.png',1)" onmouseout="MM_swapImgRestore()" />
+                </li>
+                <li class="submenu">
+                    <img src="images/bottom_10.png" width="158" height="155" id="Image10" onmouseover="MM_swapImage('Image10','','images/bottom_10_1.png',1)" onmouseout="MM_swapImgRestore()" />
+                </li>
+                <li class="submenu">
+                    <img src="images/bottom_11.png" width="158" height="155" id="Image11" onmouseover="MM_swapImage('Image11','','images/bottom_11_1.png',1)" onmouseout="MM_swapImgRestore()" />
+                </li>
+                <li class="submenu" style="margin-right:0;">
+                    <img src="images/bottom_12.png" width="158" height="155" id="Image12" onmouseover="MM_swapImage('Image12','','images/bottom_12_1.png',1)" onmouseout="MM_swapImgRestore()" />
+                </li>
+                <div class="clear"></div>
+            </ul>
+            <!-- table -->
+            <div class="g-table">
+                <table class="table-shopping">
+                    <thead>
+                        <tr>
+                            <th>产品编号</th>
+                            <th>产品名字</th>
+                            <th>购买数量</th>
+                            <th>产品单价</th>
+                            <th>产品总价</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item , index) in itemList">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>
+                                <button type="button" class="btn tn-primary shopping-btn" @click="reduce(index)">-</button>
+                                <input type="text" v-model="item.quantity" class="shopping-put">
+                                <button type="button" class="btn tn-primary shopping-btn" @click="add(index)">+</button>
+                            </td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.price*item.quantity}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-remove" @click="remove(index)">移除</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>合计</td>
+                            <td>总购买数量</td>
+                            <td>{{count}}</td>
+                            <td>总购买价</td>
+                            <td>{{total}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-remove" @click="empty()">清空购物车</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" v-if="itemList.length===0">
+                                您的购物车为空
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- table ---end-->
+            </div>
+            <div class="new_list">
+                <div class="statistical_box">
+                    <div class="statistical_title">部门联动统计</div>
+                    <div class="statistical">
+                        <img src="images/test_statistical.jpg" width="450" height="260" />
+                    </div>
+                </div>
+                <div class="news_box">
+                    <div class="news_title">
+                        <span class="system_news">系统新闻</span>
+                        <span class="news_icon">5</span>
+                    </div>
+                    <ul class="news_list">
+                        <li>
+                            <p class="news_list_title">这里是新闻的标题</p>
+                            <span class="news_time">2017-02-28</span>
+                        </li>
+                        <li>
+                            <p class="news_list_title">这里是新闻的标题</p>
+                            <span class="news_time">2017-02-28</span>
+                        </li>
+                        <li>
+                            <p class="news_list_title">这里是新闻的标题</p>
+                            <span class="news_time">2017-02-28</span>
+                        </li>
+                        <li>
+                            <p class="news_list_title">这里是新闻的标题</p>
+                            <span class="news_time">2017-02-28</span>
+                        </li>
+                        <li>
+                            <p class="news_list_title">这里是新闻的标题</p>
+                            <span class="news_time">2017-02-28</span>
+                        </li>
+                        <li>
+                            <p class="news_list_title">这里是新闻的标题</p>
+                            <span class="news_time">2017-02-28</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="js/hover.js"></script>
+<script src="js/page.js"></script>
+
+</html>
